@@ -1,1 +1,678 @@
+<!doctype html>
+<html lang="fr">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>SAM Paysagiste — Élagage &amp; entretien d'espaces verts à Gannat</title>
+<meta name="description" content="SAM Élagage / SAM Paysagiste — élagage, travail en nacelle, tonte, taille de haie, création de jardin et petits travaux extérieurs à Gannat (03) et alentours. Devis gratuit au 06 56 86 42 13.">
+<link rel="icon" href="data:,">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Fraunces:opsz,wght@9..144,400;9..144,500;9..144,600&family=Work+Sans:wght@400;500;600;700&family=JetBrains+Mono:wght@500&display=swap" rel="stylesheet">
+<style>
+/* ---------------------------------------------------
+   SAM Élagage / SAM Paysagiste — design tokens
+   Palette lumineuse : vert prairie, ciel, soleil, corail
+--------------------------------------------------- */
+:root{
+  --meadow:  #3F9E46;   /* vert prairie — couleur de marque */
+  --fern:    #1E7A44;   /* vert plus soutenu — texte sur clair, hover */
+  --sky:     #43B4D6;   /* bleu ciel — accent frais */
+  --sunbeam: #FFC53D;   /* jaune soleil — highlights, petites touches */
+  --coral:   #F1633B;   /* corail — appels à l'action */
+  --cream:   #FFFCF4;   /* fond clair principal */
+  --cream-dim:#FBF3DE;  /* fond clair secondaire, légèrement doré */
+  --mint:    #E8F6EA;   /* vert très clair — fonds de section */
+  --skytint: #E4F5F9;   /* bleu très clair — fonds de section */
+  --ink:     #1F2E20;   /* texte principal, vert-noir doux */
 
+  --display: "Fraunces", "Iowan Old Style", Georgia, serif;
+  --body:    "Work Sans", -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif;
+  --mono:    "JetBrains Mono", ui-monospace, SFMono-Regular, monospace;
+
+  --max: 1180px;
+  --gap: clamp(1.25rem, 3vw, 2.5rem);
+  --radius: 14px;
+}
+
+*,*::before,*::after{ box-sizing: border-box; }
+html{ scroll-behavior: smooth; }
+body{
+  margin:0;
+  font-family: var(--body);
+  color: var(--ink);
+  background: var(--cream);
+  -webkit-font-smoothing: antialiased;
+  line-height: 1.5;
+}
+img{ max-width:100%; display:block; }
+a{ color: inherit; }
+h1,h2,h3{ font-family: var(--display); font-weight: 600; margin: 0 0 .5em; line-height: 1.08; }
+p{ margin: 0 0 1em; }
+ul{ margin:0; padding:0; list-style:none; }
+
+.wrap{
+  max-width: var(--max);
+  margin-inline: auto;
+  padding-inline: clamp(1.25rem, 4vw, 2.5rem);
+}
+
+.skip-link{
+  position:absolute; left:-999px; top:0;
+  background: var(--coral); color:#fff; padding:.75rem 1.25rem;
+  z-index: 999; border-radius: 0 0 8px 0;
+}
+.skip-link:focus{ left:0; }
+
+:focus-visible{
+  outline: 3px solid var(--sunbeam);
+  outline-offset: 3px;
+}
+
+/* ---------- buttons ---------- */
+.btn{
+  display:inline-flex; align-items:center; gap:.55em;
+  font-family: var(--body); font-weight:600; font-size: .98rem;
+  padding: .85em 1.5em;
+  border-radius: 999px;
+  text-decoration:none;
+  border: 1.5px solid transparent;
+  transition: transform .18s ease, background .18s ease, border-color .18s ease, box-shadow .18s ease;
+  white-space: nowrap;
+}
+.btn svg{ width:1.05em; height:1.05em; fill:currentColor; flex:none; }
+.btn:hover{ transform: translateY(-2px); }
+.btn-ember{ background: var(--coral); color:#fff; box-shadow: 0 10px 24px -10px rgba(241,99,59,.55);}
+.btn-ember:hover{ background:#d94f2b; }
+.btn-ghost{ background: rgba(255,255,255,.15); color:#fff; border-color: rgba(255,255,255,.65); }
+.btn-ghost:hover{ border-color:#fff; background: rgba(255,255,255,.28); }
+.btn-outline-light{ background: transparent; color: var(--fern); border-color: var(--fern); }
+.btn-outline-light:hover{ background: var(--fern); color:#fff; }
+.btn-lg{ padding: 1em 1.9em; font-size: 1.05rem; }
+
+/* ---------- wordmark / nav (styles de base, réutilisés dans le footer) ---------- */
+.header-inner{
+  display:flex; align-items:center; justify-content:space-between;
+  gap: 1rem; padding-block: .85rem;
+}
+.wordmark{
+  font-family: var(--display); font-size: 1.4rem; letter-spacing:.01em;
+  text-decoration:none; color: var(--ink); font-weight:600;
+}
+.wordmark span{ font-style: italic; font-weight: 500; color: var(--fern); }
+.wordmark-small{ font-size: 1.15rem; }
+
+.main-nav{ display:flex; gap: clamp(1rem,2vw,1.75rem); }
+.main-nav a{
+  text-decoration:none; font-weight:600; font-size:.95rem;
+  color: var(--ink); opacity:.75; position:relative; padding-block:.25rem;
+}
+.main-nav a:hover{ opacity:1; }
+.main-nav a::after{
+  content:""; position:absolute; left:0; right:0; bottom:-2px; height:2px;
+  background: var(--coral); transform: scaleX(0); transform-origin:left;
+  transition: transform .2s ease;
+}
+.main-nav a:hover::after{ transform: scaleX(1); }
+
+.header-call{ font-size: .9rem; padding: .65em 1.15em; }
+
+/* ---------- eyebrow / headings ---------- */
+.eyebrow{
+  font-family: var(--mono); text-transform: uppercase; letter-spacing:.12em;
+  font-size: .78rem; font-weight:500; margin: 0 0 1rem;
+}
+.eyebrow-dark{ color: var(--fern); }
+.eyebrow-light{ color: var(--fern); }
+h2{ font-size: clamp(1.7rem, 3.4vw, 2.5rem); max-width: 18ch; }
+.h2-light{ color: var(--ink); }
+
+/* ---------- hero (photo plein écran + header transparent) ---------- */
+.hero-full{
+  position: relative;
+  min-height: min(94vh, 840px);
+  display:flex; align-items:center;
+  overflow: visible; /* laisse déborder la barre d'infos */
+  color:#fff;
+}
+.hero-media{ position:absolute; inset:0; z-index:0; overflow:hidden; }
+.hero-media img{
+  width:100%; height:100%; object-fit: cover; object-position: 50% 32%;
+  filter: saturate(1.2) brightness(1.04);
+}
+.hero-scrim{
+  position:absolute; inset:0;
+  background:
+    linear-gradient(180deg, rgba(16,48,28,.55) 0%, rgba(16,48,28,.12) 26%, rgba(16,48,28,.2) 60%, rgba(16,48,28,.62) 100%);
+}
+
+/* header transparent, posé sur la photo */
+.hero-header{
+  position:absolute; top:0; left:0; right:0; z-index:6;
+  padding-block: 1.35rem;
+}
+.hero-header .header-inner{
+  display:flex; align-items:center; justify-content:space-between; gap:1rem;
+}
+.wordmark-onphoto{ color:#fff; text-shadow: 0 2px 12px rgba(0,0,0,.25); }
+.wordmark-onphoto span{ color: var(--sunbeam); }
+.main-nav-onphoto a{ color:#fff; opacity:.92; }
+.main-nav-onphoto a:hover{ opacity:1; }
+.main-nav-onphoto a::after{ background: var(--sunbeam); }
+
+.nav-toggle{
+  display:none; background: rgba(255,255,255,.15); border: 1px solid rgba(255,255,255,.5);
+  color:#fff; width:44px; height:44px; border-radius: 50%;
+  align-items:center; justify-content:center; cursor:pointer; flex:none;
+}
+.nav-toggle svg{ width:20px; height:20px; }
+
+@media (max-width: 780px){
+  .hero-header .main-nav{ display:none; }
+  .hero-header .header-call{ display:none; }
+  .nav-toggle{ display:inline-flex; }
+}
+
+/* menu plein écran mobile */
+.mobile-nav{
+  position: fixed; inset:0; z-index:80;
+  background: var(--fern);
+  display:flex; flex-direction:column; align-items:center; justify-content:center;
+  gap: 1.6rem;
+}
+.mobile-nav[hidden]{ display:none; }
+.mobile-nav a{
+  color:#fff; text-decoration:none; font-family: var(--display); font-size: 1.7rem;
+}
+.mobile-nav .btn{ margin-top: .5rem; }
+.mobile-nav-close{
+  position:absolute; top:1.35rem; right: clamp(1.25rem,4vw,2.5rem);
+  background:transparent; border:none; color:#fff; width:44px; height:44px;
+  display:flex; align-items:center; justify-content:center; cursor:pointer;
+}
+.mobile-nav-close svg{ width:22px; height:22px; }
+
+/* contenu du hero */
+.hero-inner{
+  position:relative; z-index:1;
+  padding-block: clamp(6rem, 16vh, 8rem) clamp(6rem, 14vh, 8rem);
+}
+.hero .eyebrow{ color: var(--sunbeam); }
+.hero-full h1{
+  font-size: clamp(2.4rem, 6vw, 4.2rem);
+  max-width: 14ch;
+  text-wrap: balance;
+}
+.hero-lede{ max-width: 46ch; font-size: 1.1rem; opacity:.95; }
+.hero-actions{ display:flex; flex-wrap:wrap; gap: .9rem; margin-top: 1.75rem; }
+
+/* barre d'infos flottante, chevauche le bas de la photo */
+.info-bar{
+  position:absolute; left:50%; bottom:0; z-index:4;
+  transform: translate(-50%, 48%);
+  width:min(1080px, calc(100% - 2.5rem));
+  background:#fff; color: var(--ink);
+  border-radius: 20px;
+  box-shadow: 0 30px 60px -24px rgba(31,46,32,.4);
+  display:grid; grid-template-columns: repeat(3, 1fr) auto;
+  align-items:center;
+  gap: 1.25rem;
+  padding: 1.6rem clamp(1.25rem, 3vw, 2.25rem);
+}
+.info-item{
+  display:flex; align-items:center; gap:.85rem;
+  padding-inline-end: 1rem;
+  border-right: 1px solid rgba(31,46,32,.1);
+}
+.info-item:last-of-type{ border-right:none; }
+.info-item svg{ width:26px; height:26px; flex:none; color: var(--coral); }
+.info-label{
+  display:block; font-family: var(--mono); font-size:.66rem; text-transform:uppercase;
+  letter-spacing:.08em; color: var(--fern); margin-bottom:.2rem;
+}
+.info-value{ display:block; font-weight:600; font-size:.95rem; line-height:1.3; }
+.info-cta{ justify-self:end; white-space:nowrap; }
+
+@media (max-width: 980px){
+  .info-bar{ grid-template-columns: 1fr 1fr; row-gap: 1.25rem; }
+  .info-item:nth-of-type(2){ border-right:none; }
+  .info-cta{ grid-column: 1 / -1; justify-self:stretch; }
+  .info-cta .btn{ width:100%; }
+}
+@media (max-width: 620px){
+  .info-bar{ grid-template-columns: 1fr; transform: translate(-50%, 32%); }
+  .info-item{ border-right:none; border-bottom: 1px solid rgba(31,46,32,.1); padding-block-end: 1rem; }
+  .info-item:last-of-type{ border-bottom:none; padding-block-end:0; }
+}
+
+/* signature canopy divider — vagues colorées entre les sections */
+.canopy-divider{
+  position:relative; z-index:2;
+  display:block; width:100%; height: 70px;
+  margin-top: -2px;
+}
+.canopy-path{
+  fill: var(--cream);
+}
+.canopy-divider-dark .canopy-path{ fill: var(--mint); }
+.terrain .canopy-divider .canopy-path{ fill: var(--cream); }
+
+.canopy-path{ stroke: transparent; }
+[data-canopy] .canopy-path{ transition: none; }
+
+/* ---------- services ---------- */
+.services{ padding-block: clamp(7rem,16vw,11rem) 0; background: var(--cream); }
+.service-grid{
+  display:grid; grid-template-columns: repeat(3, 1fr); gap: var(--gap);
+  margin-top: 2.5rem;
+}
+.service-card{
+  background:#fff; border-radius: var(--radius);
+  padding: clamp(1.5rem,2.5vw,2.2rem);
+  border: 1px solid rgba(31,46,32,.08);
+  border-top: 5px solid var(--meadow);
+  box-shadow: 0 20px 40px -30px rgba(31,46,32,.35);
+}
+.service-card-ember{
+  background: var(--skytint);
+  border-color: transparent;
+  border-top: 5px solid var(--sky);
+}
+.service-card:nth-of-type(3){ border-top-color: var(--coral); }
+.service-card-ember h3{ color: var(--ink); }
+.service-card .tag{
+  display:inline-block; font-family: var(--mono); font-size:.72rem;
+  letter-spacing:.08em; text-transform:uppercase;
+  color: var(--fern); margin-bottom: 1rem;
+}
+.service-card-ember .tag{ color: #1c7f96; }
+.service-card:nth-of-type(3) .tag{ color: var(--coral); }
+.service-card h3{ font-size: 1.25rem; margin-bottom: .9rem; }
+.service-card ul{ display:flex; flex-direction:column; gap:.55rem; }
+.service-card li{
+  padding-left: 1.3em; position:relative; font-size:.98rem;
+}
+.service-card li::before{
+  content:""; position:absolute; left:0; top:.55em;
+  width:6px; height:6px; border-radius:50%;
+  background: var(--meadow);
+}
+.service-card-ember li::before{ background: var(--sky); }
+.service-card:nth-of-type(3) li::before{ background: var(--coral); }
+.card-note{ margin-top: 1rem; font-size:.9rem; opacity:.8; margin-bottom:0; }
+
+/* ---------- terrain (gallery) ---------- */
+.terrain{ background: var(--mint); color: var(--ink); padding-block: clamp(4rem,8vw,6.5rem) 0; }
+.terrain-grid{
+  display:grid; grid-template-columns: repeat(3,1fr); gap: var(--gap);
+  margin-top: 2.5rem;
+}
+.terrain-photo{ margin:0; }
+.terrain-photo img{
+  width:100%; aspect-ratio: 4/3; object-fit:cover;
+  border-radius: var(--radius);
+  filter: saturate(1.1);
+  box-shadow: 0 18px 32px -20px rgba(31,46,32,.4);
+}
+.terrain-photo figcaption{
+  margin-top: .9rem; font-size:.92rem; opacity:.8;
+}
+.terrain-photo figcaption span{
+  display:block; font-family: var(--display); font-style: italic;
+  font-size: 1.05rem; color: var(--fern); opacity:1; margin-bottom:.15rem;
+}
+
+/* ---------- zone ---------- */
+.zone{ padding-block: clamp(4.5rem,9vw,7rem); background: var(--cream); }
+.zone-inner{
+  display:grid; grid-template-columns: 1.2fr .8fr; gap: clamp(2rem,6vw,4rem);
+  align-items:center;
+}
+.zone-text p{ max-width: 46ch; color: rgba(31,46,32,.85); }
+.facts{ display:grid; grid-template-columns: repeat(3,1fr); gap: 1.25rem; margin-top: 2rem; }
+.facts dt{
+  font-family: var(--mono); font-size:.7rem; text-transform:uppercase; letter-spacing:.08em;
+  color: var(--coral); margin-bottom:.35rem;
+}
+.facts dd{ margin:0; font-weight:600; font-size:.98rem; }
+
+.zone-ring{ position:relative; display:flex; align-items:center; justify-content:center; }
+.zone-ring svg{ width: min(100%, 300px); height:auto; }
+.ring{ fill:none; stroke-width: 2; opacity:.85; }
+.ring.r1{ stroke: var(--coral); stroke-width: 2.4; }
+.ring.r2{ stroke: var(--sunbeam); }
+.ring.r3{ stroke: var(--sky); }
+.ring.r4{ stroke: var(--meadow); opacity:.7; }
+.ring-label{
+  position:absolute; text-align:center; font-family: var(--display); font-style: italic;
+  font-size: 1.05rem; color: var(--ink); line-height:1.25;
+}
+
+/* ---------- contact ---------- */
+.contact{
+  background: linear-gradient(135deg, var(--mint) 0%, var(--skytint) 100%);
+  color: var(--ink);
+  padding-block: clamp(4.5rem,9vw,7rem);
+}
+.contact-inner{ text-align:center; }
+.contact-inner h2{ margin-inline:auto; }
+.contact-lede{ max-width: 42ch; margin-inline:auto; opacity:.85; font-size:1.05rem; }
+.contact-actions{
+  display:flex; justify-content:center; flex-wrap:wrap; gap:1rem; margin-top:2rem;
+}
+
+/* ---------- footer ---------- */
+.site-footer{ background: var(--cream-dim); color: rgba(31,46,32,.8); padding-block: 2.25rem; border-top: 1px solid rgba(31,46,32,.08); }
+.footer-inner{
+  display:flex; justify-content:space-between; align-items:flex-start; flex-wrap:wrap; gap:1.5rem;
+}
+.footer-brand .wordmark{ color: var(--ink); }
+.footer-brand .wordmark span{ color: var(--fern); }
+.footer-brand p{ margin-top:.5rem; font-size:.85rem; max-width:32ch; }
+.footer-meta{ text-align:right; font-size:.85rem; }
+.footer-meta p{ margin:0 0 .3rem; }
+.mono{ font-family: var(--mono); font-size:.78rem; opacity:.8; }
+
+/* ---------- reveal animation ---------- */
+.reveal{ opacity:0; transform: translateY(18px); transition: opacity .7s ease, transform .7s ease; }
+.reveal.is-visible{ opacity:1; transform:none; }
+
+@media (prefers-reduced-motion: reduce){
+  html{ scroll-behavior:auto; }
+  .reveal{ opacity:1; transform:none; transition:none; }
+  .btn:hover{ transform:none; }
+}
+
+/* ---------- responsive ---------- */
+@media (max-width: 980px){
+  .service-grid, .terrain-grid{ grid-template-columns: 1fr 1fr; }
+  .zone-inner{ grid-template-columns:1fr; }
+  .zone-ring{ order:-1; margin-bottom:1rem; }
+  .footer-inner{ flex-direction:column; }
+  .footer-meta{ text-align:left; }
+}
+
+@media (max-width: 620px){
+  .service-grid, .terrain-grid{ grid-template-columns: 1fr; }
+  .facts{ grid-template-columns: 1fr 1fr; }
+  .hero-full{ min-height: 92vh; }
+  .hero-actions .btn{ width:100%; justify-content:center; }
+  .contact-actions .btn{ width:100%; justify-content:center; }
+}
+
+@media (max-width: 400px){
+  .wordmark{ font-size:1.2rem; }
+}
+
+</style>
+</head>
+<body>
+
+<a class="skip-link" href="#contact">Aller au contact</a>
+
+<!-- menu plein écran mobile -->
+<nav class="mobile-nav" id="mobileNav" aria-label="Navigation mobile" hidden>
+  <button class="mobile-nav-close" id="mobileNavClose" aria-label="Fermer le menu">
+    <svg viewBox="0 0 24 24" fill="none" aria-hidden="true"><path d="M5 5l14 14M19 5L5 19" stroke="currentColor" stroke-width="2.2" stroke-linecap="round"/></svg>
+  </button>
+  <a href="#services">Prestations</a>
+  <a href="#terrain">En intervention</a>
+  <a href="#zone">Zone</a>
+  <a href="#contact">Contact</a>
+  <a class="btn btn-ember" href="tel:0656864213">06 56 86 42 13</a>
+</nav>
+
+<main>
+
+  <!-- HERO -->
+  <section class="hero-full" id="top">
+    <div class="hero-media" aria-hidden="true">
+      <img src="assets/img/hero-bg.jpg" alt="">
+      <div class="hero-scrim"></div>
+    </div>
+
+    <header class="hero-header">
+      <div class="wrap header-inner">
+        <a class="wordmark wordmark-onphoto" href="#top">SAM <span>élagage</span></a>
+        <nav class="main-nav main-nav-onphoto" aria-label="Navigation principale">
+          <a href="#services">Prestations</a>
+          <a href="#terrain">En intervention</a>
+          <a href="#zone">Zone</a>
+          <a href="#contact">Contact</a>
+        </nav>
+        <a class="btn btn-ember header-call" href="tel:0656864213">
+          <svg viewBox="0 0 24 24" aria-hidden="true"><path d="M6.6 10.8c1.4 2.8 3.8 5.1 6.6 6.6l2.2-2.2c.3-.3.7-.4 1-.2 1.1.4 2.3.6 3.6.6.6 0 1 .4 1 1V20c0 .6-.4 1-1 1C10.6 21 3 13.4 3 4c0-.6.4-1 1-1h3.5c.6 0 1 .4 1 1 0 1.3.2 2.5.6 3.6.1.4 0 .8-.3 1L6.6 10.8z"/></svg>
+          06 56 86 42 13
+        </a>
+        <button class="nav-toggle" id="navToggle" aria-label="Ouvrir le menu" aria-expanded="false">
+          <svg viewBox="0 0 24 24" fill="none" aria-hidden="true"><path d="M4 7h16M4 12h16M4 17h16" stroke="currentColor" stroke-width="2" stroke-linecap="round"/></svg>
+        </button>
+      </div>
+    </header>
+
+    <div class="wrap hero-inner">
+      <p class="eyebrow">Gannat (03) &amp; alentours</p>
+      <h1>Tous les travaux<br>des espaces verts.</h1>
+      <p class="hero-lede">Élagage en nacelle, entretien de jardin et petits travaux extérieurs, menés par un artisan qui connaît chaque terrain de la région.</p>
+      <div class="hero-actions">
+        <a class="btn btn-ember" href="tel:0656864213">Appeler pour un devis gratuit</a>
+        <a class="btn btn-ghost" href="#services">Voir les prestations</a>
+      </div>
+    </div>
+
+    <!-- barre d'infos qui chevauche le bas de la photo -->
+    <div class="info-bar">
+      <div class="info-item">
+        <svg viewBox="0 0 24 24" fill="none" aria-hidden="true"><path d="M6.6 10.8c1.4 2.8 3.8 5.1 6.6 6.6l2.2-2.2c.3-.3.7-.4 1-.2 1.1.4 2.3.6 3.6.6.6 0 1 .4 1 1V20c0 .6-.4 1-1 1C10.6 21 3 13.4 3 4c0-.6.4-1 1-1h3.5c.6 0 1 .4 1 1 0 1.3.2 2.5.6 3.6.1.4 0 .8-.3 1L6.6 10.8z" fill="currentColor"/></svg>
+        <div>
+          <span class="info-label">Téléphone</span>
+          <span class="info-value">06 56 86 42 13</span>
+        </div>
+      </div>
+      <div class="info-item">
+        <svg viewBox="0 0 24 24" fill="none" aria-hidden="true"><path d="M12 22s7-7.2 7-12.5A7 7 0 0 0 5 9.5C5 14.8 12 22 12 22Z" stroke="currentColor" stroke-width="1.8"/><circle cx="12" cy="9.5" r="2.5" stroke="currentColor" stroke-width="1.8"/></svg>
+        <div>
+          <span class="info-label">Zone d'intervention</span>
+          <span class="info-value">Gannat (03) &amp; alentours</span>
+        </div>
+      </div>
+      <div class="info-item">
+        <svg viewBox="0 0 24 24" fill="none" aria-hidden="true"><circle cx="12" cy="12" r="8.5" stroke="currentColor" stroke-width="1.8"/><path d="M12 7.5V12l3 2" stroke="currentColor" stroke-width="1.8" stroke-linecap="round"/></svg>
+        <div>
+          <span class="info-label">Disponibilité</span>
+          <span class="info-value">Lun–Sam, sur rendez-vous</span>
+        </div>
+      </div>
+      <a class="btn btn-ember info-cta" href="tel:0656864213">Devis gratuit</a>
+    </div>
+  </section>
+
+  <!-- SERVICES -->
+  <section class="services" id="services">
+    <div class="wrap">
+      <p class="eyebrow eyebrow-dark">Prestations</p>
+      <h2>Trois façons de reprendre la main sur votre terrain</h2>
+
+      <div class="service-grid">
+
+        <article class="service-card reveal">
+          <span class="tag">01 — jardin</span>
+          <h3>Aménagement jardin &amp; espaces verts</h3>
+          <ul>
+            <li>Tonte de pelouse, débroussaillage</li>
+            <li>Taille de haie</li>
+            <li>Enlèvement des déchets verts</li>
+            <li>Création de parc de jardin</li>
+          </ul>
+        </article>
+
+        <article class="service-card service-card-ember reveal">
+          <span class="tag">02 — hauteur</span>
+          <h3>Aménagement extérieur</h3>
+          <ul>
+            <li>Élagage</li>
+            <li>Travail en nacelle</li>
+          </ul>
+          <p class="card-note">Pour les arbres difficiles d'accès ou les tailles en hauteur, sans passer par la grimpe.</p>
+        </article>
+
+        <article class="service-card reveal">
+          <span class="tag">03 — multi</span>
+          <h3>Multi-services</h3>
+          <ul>
+            <li>Petite maçonnerie</li>
+            <li>Réparation de petite couverture</li>
+            <li>Création de muret</li>
+          </ul>
+        </article>
+
+      </div>
+    </div>
+    <svg class="canopy-divider canopy-divider-dark" data-canopy viewBox="0 0 1440 90" preserveAspectRatio="none" aria-hidden="true">
+      <path class="canopy-path" d="M0,50 C 200,10 420,80 660,45 C 900,10 1060,70 1260,40 C 1360,25 1400,45 1440,40 L1440,90 L0,90 Z"/>
+    </svg>
+  </section>
+
+  <!-- EN INTERVENTION -->
+  <section class="terrain" id="terrain">
+    <div class="wrap">
+      <p class="eyebrow eyebrow-light">En intervention</p>
+      <h2 class="h2-light">Le même œil, sur chaque chantier</h2>
+
+      <div class="terrain-grid">
+        <figure class="terrain-photo reveal">
+          <img src="assets/img/climber.jpg" alt="Élagueur en cordage dans un pin, harnais et tronçonneuse, pendant une opération de taille en hauteur">
+          <figcaption><span>Grimpe &amp; taille</span>Sécurisation et coupe en hauteur, arbre par arbre.</figcaption>
+        </figure>
+        <figure class="terrain-photo reveal">
+          <img src="assets/img/nacelle.jpg" alt="Bras de nacelle élévatrice déployé au-dessus d'un arbre pour un élagage en hauteur">
+          <figcaption><span>Travail en nacelle</span>Pour les branches hors de portée, sans risque inutile.</figcaption>
+        </figure>
+        <figure class="terrain-photo reveal">
+          <img src="assets/img/robot.jpg" alt="Tondeuse robotisée guidée à la main sur une pelouse entretenue" >
+          <figcaption><span>Entretien courant</span>Tonte et finitions nettes, chantier après chantier.</figcaption>
+        </figure>
+      </div>
+    </div>
+    <svg class="canopy-divider" data-canopy viewBox="0 0 1440 90" preserveAspectRatio="none" aria-hidden="true">
+      <path class="canopy-path" d="M0,35 C 240,75 460,15 700,42 C 940,68 1080,20 1300,38 C 1380,44 1410,32 1440,36 L1440,90 L0,90 Z"/>
+    </svg>
+  </section>
+
+  <!-- ZONE / A PROPOS -->
+  <section class="zone" id="zone">
+    <div class="wrap zone-inner">
+      <div class="zone-text reveal">
+        <p class="eyebrow eyebrow-dark">Zone d'intervention</p>
+        <h2>Basé à Gannat, mobile dans tout le secteur</h2>
+        <p>SAM Élagage intervient chez les particuliers et les collectivités de Gannat et des communes voisines, dans l'Allier. Chaque devis est établi après visite, sans engagement.</p>
+        <dl class="facts">
+          <div>
+            <dt>Secteur</dt>
+            <dd>Gannat, 03800 &amp; alentours</dd>
+          </div>
+          <div>
+            <dt>Devis</dt>
+            <dd>Gratuit, sur place</dd>
+          </div>
+          <div>
+            <dt>SIRET</dt>
+            <dd>899 045 512 00014</dd>
+          </div>
+        </dl>
+      </div>
+      <div class="zone-ring reveal" aria-hidden="true">
+        <svg viewBox="0 0 240 240">
+          <circle cx="120" cy="120" r="30" class="ring r1"/>
+          <circle cx="120" cy="120" r="55" class="ring r2"/>
+          <circle cx="120" cy="120" r="80" class="ring r3"/>
+          <circle cx="120" cy="120" r="105" class="ring r4"/>
+        </svg>
+        <span class="ring-label">03800<br>Gannat</span>
+      </div>
+    </div>
+  </section>
+
+  <!-- CONTACT -->
+  <section class="contact" id="contact">
+    <div class="wrap contact-inner">
+      <p class="eyebrow eyebrow-light">Devis gratuit</p>
+      <h2 class="h2-light">Un chantier à faire chiffrer&nbsp;?</h2>
+      <p class="contact-lede">Un appel suffit pour convenir d'un passage sur place et repartir avec un devis clair.</p>
+      <div class="contact-actions">
+        <a class="btn btn-ember btn-lg" href="tel:0656864213">
+          <svg viewBox="0 0 24 24" aria-hidden="true"><path d="M6.6 10.8c1.4 2.8 3.8 5.1 6.6 6.6l2.2-2.2c.3-.3.7-.4 1-.2 1.1.4 2.3.6 3.6.6.6 0 1 .4 1 1V20c0 .6-.4 1-1 1C10.6 21 3 13.4 3 4c0-.6.4-1 1-1h3.5c.6 0 1 .4 1 1 0 1.3.2 2.5.6 3.6.1.4 0 .8-.3 1L6.6 10.8z"/></svg>
+          06 56 86 42 13
+        </a>
+        <a class="btn btn-outline-light btn-lg" href="sms:0656864213?body=Bonjour%2C%20je%20souhaite%20un%20devis%20pour%20des%20travaux%20d%27espaces%20verts%20%C3%A0%20Gannat.">
+          Envoyer un SMS
+        </a>
+      </div>
+    </div>
+  </section>
+
+</main>
+
+<footer class="site-footer">
+  <div class="wrap footer-inner">
+    <div class="footer-brand">
+      <span class="wordmark wordmark-small">SAM <span>élagage</span></span>
+      <p>Élagage, entretien de jardin &amp; petits travaux extérieurs — Gannat (03)</p>
+    </div>
+    <div class="footer-meta">
+      <p>06 56 86 42 13 — 03800 Gannat</p>
+      <p class="mono">SIRET 899 045 512 00014</p>
+    </div>
+  </div>
+</footer>
+
+<script>
+// Reveal-on-scroll for elements marked .reveal
+(function () {
+  var items = document.querySelectorAll(".reveal");
+  if (!("IntersectionObserver" in window) || !items.length) {
+    items.forEach(function (el) { el.classList.add("is-visible"); });
+    return;
+  }
+  var io = new IntersectionObserver(
+    function (entries) {
+      entries.forEach(function (entry) {
+        if (entry.isIntersecting) {
+          entry.target.classList.add("is-visible");
+          io.unobserve(entry.target);
+        }
+      });
+    },
+    { threshold: 0.15, rootMargin: "0px 0px -40px 0px" }
+  );
+  items.forEach(function (el) { io.observe(el); });
+})();
+
+// Mobile full-screen menu
+(function () {
+  var toggle = document.getElementById("navToggle");
+  var closeBtn = document.getElementById("mobileNavClose");
+  var panel = document.getElementById("mobileNav");
+  if (!toggle || !panel) return;
+
+  function openMenu() {
+    panel.removeAttribute("hidden");
+    toggle.setAttribute("aria-expanded", "true");
+    document.body.style.overflow = "hidden";
+  }
+  function closeMenu() {
+    panel.setAttribute("hidden", "");
+    toggle.setAttribute("aria-expanded", "false");
+    document.body.style.overflow = "";
+  }
+
+  toggle.addEventListener("click", openMenu);
+  if (closeBtn) closeBtn.addEventListener("click", closeMenu);
+  panel.querySelectorAll("a").forEach(function (a) {
+    a.addEventListener("click", closeMenu);
+  });
+})();
+
+</script>
+</body>
+</html>
