@@ -8,7 +8,7 @@
 <link rel="icon" href="data:,">
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-<link href="https://fonts.googleapis.com/css2?family=Fraunces:opsz,wght@9..144,400;9..144,500;9..144,600&family=Work+Sans:wght@400;500;600;700&family=JetBrains+Mono:wght@500&display=swap" rel="stylesheet">
+<link href="https://fonts.googleapis.com/css2?family=Fraunces:opsz,wght@9..144,400;9..144,500;9..144,600;9..144,700&family=Work+Sans:wght@400;500;600;700&family=JetBrains+Mono:wght@500&display=swap" rel="stylesheet">
 <style>
 /* ---------------------------------------------------
    SAM Élagage / SAM Paysagiste — design tokens
@@ -84,8 +84,8 @@ ul{ margin:0; padding:0; list-style:none; }
 .btn:hover{ transform: translateY(-2px); }
 .btn-ember{ background: var(--coral); color:#fff; box-shadow: 0 10px 24px -10px rgba(241,99,59,.55);}
 .btn-ember:hover{ background:#d94f2b; }
-.btn-ghost{ background: rgba(255,255,255,.15); color:#fff; border-color: rgba(255,255,255,.65); }
-.btn-ghost:hover{ border-color:#fff; background: rgba(255,255,255,.28); }
+.btn-ghost{ background: rgba(255,255,255,.18); color:#fff; border-color: rgba(255,255,255,.75); backdrop-filter: blur(2px); }
+.btn-ghost:hover{ border-color:#fff; background: rgba(255,255,255,.3); }
 .btn-outline-light{ background: transparent; color: var(--fern); border-color: var(--fern); }
 .btn-outline-light:hover{ background: var(--fern); color:#fff; }
 .btn-lg{ padding: 1em 1.9em; font-size: 1.05rem; }
@@ -138,25 +138,27 @@ h2{ font-size: clamp(1.7rem, 3.4vw, 2.5rem); max-width: 18ch; }
 .hero-media{ position:absolute; inset:0; z-index:0; overflow:hidden; }
 .hero-media img{
   width:100%; height:100%; object-fit: cover; object-position: 50% 40%;
-  filter: saturate(1.15) brightness(1.02);
+  filter: saturate(1.1) brightness(0.98);
 }
 .hero-scrim{
   position:absolute; inset:0;
   background:
-    linear-gradient(180deg, rgba(16,48,28,.55) 0%, rgba(16,48,28,.12) 26%, rgba(16,48,28,.2) 60%, rgba(16,48,28,.62) 100%);
+    linear-gradient(100deg, rgba(8,26,14,.5) 0%, rgba(8,26,14,.12) 48%),
+    linear-gradient(180deg, rgba(8,26,14,.72) 0%, rgba(8,26,14,.32) 20%, rgba(8,26,14,.26) 42%, rgba(8,26,14,.34) 58%, rgba(8,26,14,.78) 100%);
 }
 
-/* header transparent, posé sur la photo */
+/* header transparent, posé sur la photo — bandeau sombre doux en plus du voile général */
 .hero-header{
   position:absolute; top:0; left:0; right:0; z-index:6;
   padding-block: 1.35rem;
+  background: linear-gradient(180deg, rgba(6,20,11,.55) 0%, rgba(6,20,11,0) 100%);
 }
 .hero-header .header-inner{
   display:flex; align-items:center; justify-content:space-between; gap:1rem;
 }
-.wordmark-onphoto{ color:#fff; text-shadow: 0 2px 12px rgba(0,0,0,.25); }
+.wordmark-onphoto{ color:#fff; text-shadow: 0 2px 10px rgba(0,0,0,.55), 0 1px 2px rgba(0,0,0,.6); }
 .wordmark-onphoto span{ color: var(--sunbeam); }
-.main-nav-onphoto a{ color:#fff; opacity:.92; }
+.main-nav-onphoto a{ color:#fff; opacity:.96; font-weight:700; text-shadow: 0 1px 8px rgba(0,0,0,.5); }
 .main-nav-onphoto a:hover{ opacity:1; }
 .main-nav-onphoto a::after{ background: var(--sunbeam); }
 
@@ -197,13 +199,18 @@ h2{ font-size: clamp(1.7rem, 3.4vw, 2.5rem); max-width: 18ch; }
   position:relative; z-index:1;
   padding-block: clamp(6rem, 16vh, 8rem) clamp(6rem, 14vh, 8rem);
 }
-.hero .eyebrow{ color: var(--sunbeam); }
+.hero .eyebrow{ color: var(--sunbeam); font-weight:600; text-shadow: 0 1px 8px rgba(0,0,0,.5); }
 .hero-full h1{
   font-size: clamp(2.4rem, 6vw, 4.2rem);
   max-width: 14ch;
   text-wrap: balance;
+  font-weight: 700;
+  text-shadow: 0 4px 26px rgba(0,0,0,.4), 0 2px 8px rgba(0,0,0,.4);
 }
-.hero-lede{ max-width: 46ch; font-size: 1.1rem; opacity:.95; }
+.hero-lede{
+  max-width: 46ch; font-size: 1.1rem; opacity:.97; font-weight:500;
+  text-shadow: 0 2px 12px rgba(0,0,0,.4);
+}
 .hero-actions{ display:flex; flex-wrap:wrap; gap: .9rem; margin-top: 1.75rem; }
 
 /* barre d'infos flottante, chevauche le bas de la photo */
